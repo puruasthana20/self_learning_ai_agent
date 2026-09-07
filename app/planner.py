@@ -3,13 +3,23 @@ from app.llm import LLMService
 from app.prompts import PLANNER_PROMPT
 import json
 
+
 class Planner:
+
+    def __init__(self):
+        self.llm = LLMService()
+
     def create_plan(self, state: AgentState):
-        state.plan = [
-            "Understand the task",
-            "Identify required tools",
-            "Execute tools",
-            "Generate final answer"
-        ]
+
+        prompt = f"""
+{PLANNER_PROMPT}
+
+User Request:
+{state.user_input}
+"""
+
+        response = self.llm.generate(prompt)
+
+        print(response)
 
         return state
