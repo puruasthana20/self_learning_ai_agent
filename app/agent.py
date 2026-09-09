@@ -24,6 +24,7 @@ class Agent:
                 step["tool"],
                 step["input"]
             )
+            
 
             print(result)
         return state
