@@ -17,7 +17,7 @@ class Executor:
 
                 if value.startswith("{{step_") and value.endswith("}}"):
 
-                    step_name = value[2:-2]      # step_1
+                    step_name = value[2:-2]
 
                     step_result = state.tool_results.get(step_name, {})
 
@@ -58,8 +58,6 @@ class Executor:
                 }
 
                 break
-
-            state.tool_results[f"step_{index+1}"] = result
 
             print(result)
 
