@@ -16,15 +16,23 @@ class Planner:
 {PLANNER_PROMPT}
 
 {AVAILABLE_TOOLS}
+
+Relevant Memories:
+{state.retrieved_memories}
+
 Current State
+
 PDF Path:
 {state.pdf_path}
+
 User Request:
 {state.user_input}
 """
+
         print("\n========== PROMPT ==========\n")
         print(prompt)
         print("\n============================\n")
+
         response = self.llm.generate(prompt)
 
         data = json.loads(response)

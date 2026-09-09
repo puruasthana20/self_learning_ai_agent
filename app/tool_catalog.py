@@ -6,7 +6,8 @@ Arguments:
 - text (string)
 
 Description:
-Returns the same text.
+Returns the input text unchanged.
+Useful for responding directly to the user.
 
 ----------------------------
 
@@ -15,7 +16,7 @@ Arguments:
 - pdf_path (string)
 
 Description:
-Reads a PDF file and returns its text.
+Reads a PDF file and returns its extracted text.
 
 ----------------------------
 
@@ -24,7 +25,7 @@ Arguments:
 - text (string)
 
 Description:
-Summarizes text.
+Creates a concise summary of the provided text.
 
 ----------------------------
 
@@ -33,7 +34,7 @@ Arguments:
 - expression (string)
 
 Description:
-Evaluates a mathematical expression.
+Evaluates a mathematical expression and returns the result.
 
 ----------------------------
 
@@ -42,7 +43,7 @@ Arguments:
 - query (string)
 
 Description:
-Searches the web.
+Searches the web for information.
 
 ----------------------------
 
@@ -52,7 +53,7 @@ Arguments:
 - content (string)
 
 Description:
-Writes content to a file.
+Writes the provided content into a file.
 
 ----------------------------
 
@@ -62,7 +63,16 @@ Arguments:
 - value (string)
 
 Description:
-Stores information in memory.
+Stores useful long-term information about the user.
+
+Examples:
+name → Puru
+city → Delhi
+favorite_language → Python
+favorite_editor → VS Code
+dream_company → OpenAI
+
+Use this only when the user shares information that will likely be useful in future conversations.
 
 ----------------------------
 
@@ -71,7 +81,12 @@ Arguments:
 - key (string)
 
 Description:
-Searches memory by key.
+Retrieves previously stored information from memory.
+
+Examples:
+name
+city
+favorite_language
 
 ----------------------------
 
@@ -80,5 +95,5 @@ Arguments:
 - code (string)
 
 Description:
-Executes Python code.
+Executes Python code and returns the output.
 """
