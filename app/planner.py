@@ -1,6 +1,7 @@
 from app.state import AgentState
 from app.llm import LLMService
 from app.prompts import PLANNER_PROMPT
+from app.tool_catalog import AVAILABLE_TOOLS
 import json
 
 
@@ -14,11 +15,17 @@ class Planner:
         prompt = f"""
 {PLANNER_PROMPT}
 
+{AVAILABLE_TOOLS}
+
 User Request:
 {state.user_input}
 """
 
         response = self.llm.generate(prompt)
+
+        data = json.loads(response)
+
+        state.plan = data["steps"]
 
         print(response)
 
