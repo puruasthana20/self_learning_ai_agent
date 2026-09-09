@@ -1,30 +1,32 @@
 from app.state import AgentState
 from app.planner import Planner
-from app.tool_manager import ToolManager
+from app.executor import Executor
+from app.responder import Responder
+from app.reflector import Reflector
 
 
 class Agent:
 
     def __init__(self):
         self.planner = Planner()
-        self.tool_manager = ToolManager()
+        self.executor = Executor()
+        self.responder = Responder()
+        self.reflector = Reflector()
 
-    def run(self, user_input: str):
+    def run(self, user_input: str, pdf_path: str = ""):
 
         state = AgentState(
             user_input=user_input,
-            goal=user_input
+            goal=user_input,
+            pdf_path=pdf_path
         )
 
         state = self.planner.create_plan(state)
 
-        for step in state.plan:
+        state = self.executor.execute(state)
 
-            result = self.tool_manager.execute(
-                step["tool"],
-                step["input"]
-            )
-            
+        state = self.reflector.reflect(state)
 
-            print(result)
+        state = self.responder.generate_response(state)
+
         return state

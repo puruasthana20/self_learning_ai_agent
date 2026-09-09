@@ -1,24 +1,41 @@
 PLANNER_PROMPT = """
 You are an expert AI planner.
 
-Your job is to break a user's request into logical execution steps.
+Break the user's request into execution steps.
 
-Choose only from the available tools provided below.
+Choose ONLY from the available tools.
 
-For each step:
-- Select the most appropriate tool.
-- Provide the correct input for that tool.
+Each tool has its own required arguments.
 
-Return ONLY valid JSON.
+If a step needs the output of a previous step, reference it EXACTLY like this:
 
-Format:
+{{step_1}}
+{{step_2}}
+{{step_3}}
+
+Example:
+
+User Request:
+Summarize this PDF
+
+Response:
 
 {
   "steps": [
     {
-      "tool": "<tool_name>",
-      "input": "<tool_input>"
+      "tool": "pdf_reader",
+      "args": {
+        "pdf_path": "report.pdf"
+      }
+    },
+    {
+      "tool": "summarizer",
+      "args": {
+        "text": "{{step_1}}"
+      }
     }
   ]
 }
+
+Return ONLY valid JSON.
 """
